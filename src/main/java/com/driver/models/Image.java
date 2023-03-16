@@ -18,6 +18,19 @@ public class Image {
         this.dimension = dimension;
     }
 
+
+    @ManyToOne
+    @JoinColumn
+    Blog blog;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -33,10 +46,6 @@ public class Image {
     public void setDimension(String dimension) {
         this.dimension = dimension;
     }
-
-    @ManyToOne
-    @JoinColumn
-    Blog blog;
 
     public Blog getBlog() {
         return blog;

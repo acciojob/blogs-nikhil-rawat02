@@ -27,6 +27,25 @@ public class Blog {
         this.content = content;
     }
 
+    @ManyToOne
+    @JoinColumn
+    User user;
+
+    @OneToMany(mappedBy = "blog", cascade =  CascadeType.ALL)
+    List<Image> imageList = new ArrayList<>();
+
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -47,16 +66,8 @@ public class Blog {
         return pubDate;
     }
 
-
-    @ManyToOne
-    @JoinColumn
-    User user;
-
-    @OneToMany(mappedBy = "blog", cascade =  CascadeType.ALL)
-    List<Image> imageList = new ArrayList<>();
-
-    public List<Image> getImageList() {
-        return imageList;
+    public void setPubDate(Date pubDate) {
+        this.pubDate = pubDate;
     }
 
     public User getUser() {
@@ -65,5 +76,9 @@ public class Blog {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
     }
 }

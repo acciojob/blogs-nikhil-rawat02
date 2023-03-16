@@ -27,6 +27,18 @@ public class User{
         this.lastName = lastName;
     }
 
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    List<Blog> blogList = new ArrayList<>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -58,9 +70,6 @@ public class User{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    List<Blog> blogList = new ArrayList<>();
 
     public List<Blog> getBlogList() {
         return blogList;

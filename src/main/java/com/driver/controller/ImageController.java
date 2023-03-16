@@ -23,7 +23,12 @@ public class ImageController {
 
     @GetMapping("/countImagesInScreen/{id}/{screenDimensions}")
     public ResponseEntity<Integer> countImagesInScreen(@PathVariable int id, @PathVariable String screenDimensions) throws Exception {
-        int count = imageService.countImagesInScreen(id,screenDimensions);
+        int count;
+        try{
+            count =imageService.countImagesInScreen(id,screenDimensions);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 

@@ -5,8 +5,6 @@ import com.driver.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ImageService {
 
@@ -21,7 +19,7 @@ public class ImageService {
         if (blog == null) throw new Exception("Blog id not found");
         Image image = new Image();
         image.setDescription(description);
-        image.setDimension(dimensions);
+        image.setDimensions(dimensions);
 
 //        imageRepository2.save(image);
 
@@ -41,7 +39,7 @@ public class ImageService {
         Image image = imageRepository2.findById(id).get();
         if (image == null) throw new Exception("image not found");
 
-        String dimension = image.getDimension();
+        String dimension = image.getDimensions();
         String[] screen = screenDimensions.split("X");
         String[] givenSize = dimension.split("X");
 

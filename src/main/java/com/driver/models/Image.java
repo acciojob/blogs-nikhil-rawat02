@@ -10,12 +10,12 @@ public class Image {
 
     private String description;
 
-    private String dimension;
+    private String Dimensions;
 
     public Image(){}
-    public Image(String description, String dimension) {
+    public Image(String description, String Dimensions) {
         this.description = description;
-        this.dimension = dimension;
+        this.Dimensions = Dimensions;
     }
 
 
@@ -39,12 +39,12 @@ public class Image {
         this.description = description;
     }
 
-    public String getDimension() {
-        return dimension;
+    public String getDimensions() {
+        return Dimensions;
     }
 
-    public void setDimension(String dimension) {
-        this.dimension = dimension;
+    public void setDimensions(String dimensions) {
+        this.Dimensions = dimensions;
     }
 
     public Blog getBlog() {

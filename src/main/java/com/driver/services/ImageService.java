@@ -5,6 +5,8 @@ import com.driver.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ImageService {
 
@@ -13,38 +15,45 @@ public class ImageService {
     @Autowired
     ImageRepository imageRepository2;
 
-    public Image addImage(Integer blogId, String description, String dimensions){
-        //add an image to the blog
-        Blog blog = blogRepository2.findById(blogId).get();
+    public Image addImage(Integer blogId, String description, String dimensions) {
+
+
         Image image = new Image();
         image.setDescription(description);
         image.setDimensions(dimensions);
 
-//        imageRepository2.save(image);
+        Blog blog = blogRepository2.findById(blogId).get();
 
-        blog.getImageList().add(image);
         image.setBlog(blog);
+
+        List<Image> i = blog.getImageList();
+        i.add(image);
+
         blogRepository2.save(blog);
 
         return image;
     }
 
     public void deleteImage(Integer id) {
+
         imageRepository2.deleteById(id);
     }
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
-        //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
+
         Image image = imageRepository2.findById(id).get();
+        String availableDimension = image.getDimensions();
+        String[] arr = availableDimension.split("X");
+        String[] brr = screenDimensions.split("X");
 
-        String dimension = image.getDimensions();
-        String[] screen = screenDimensions.split("X");
-        String[] givenSize = dimension.split("X");
+        int screenWidth = Integer.parseInt(brr[0]);
+        int screenHeight = Integer.parseInt(brr[1]);
+        int imageWidth = Integer.parseInt(arr[0]);
+        int imageHeight = Integer.parseInt(arr[1]);
 
-        int vertical = Integer.parseInt(screen[0]) / Integer.parseInt(givenSize[0]);
-        int horizontal = Integer.parseInt(screen[1]) / Integer.parseInt(givenSize[1]);
+        int a = screenHeight/imageHeight;
+        int b = screenWidth/imageWidth;
 
-        return vertical + horizontal;
-
+        return a*b;
     }
 }

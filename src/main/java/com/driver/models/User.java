@@ -27,7 +27,6 @@ public class User{
         this.lastName = lastName;
     }
 
-
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     List<Blog> blogList = new ArrayList<>();
 
